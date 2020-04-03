@@ -1,4 +1,4 @@
-package com.gmail.bishoybasily
+package com.gmail.bishoybasily.ktor.demo
 
 import com.google.inject.Injector
 import io.ktor.application.ApplicationCall

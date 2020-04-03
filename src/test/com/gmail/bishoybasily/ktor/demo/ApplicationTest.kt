@@ -1,4 +1,4 @@
-package com.gmail.bishoybasily
+package com.gmail.bishoybasily.ktor.demo
 
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
@@ -8,6 +8,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ApplicationTest {
+
     @Test
     fun testRoot() {
         withTestApplication({ module(testing = true) }) {
@@ -17,4 +18,5 @@ class ApplicationTest {
             }
         }
     }
+
 }

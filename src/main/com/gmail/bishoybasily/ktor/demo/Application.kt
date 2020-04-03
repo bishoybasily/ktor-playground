@@ -1,4 +1,4 @@
-package com.gmail.bishoybasily
+package com.gmail.bishoybasily.ktor.demo
 
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.google.inject.Guice
@@ -73,9 +73,17 @@ fun main(args: Array<String>) {
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
 
-    Guice.createInjector(ApplicationModule(this)).also { injector ->
+    Guice.createInjector(
+        ApplicationModule(
+            this
+        )
+    ).also { injector ->
         intercept(ApplicationCallPipeline.Features) {
-            call.attributes.put(CALL_INJECTOR_KEY, injector.createChildInjector(CallModule(call)))
+            call.attributes.put(
+                CALL_INJECTOR_KEY, injector.createChildInjector(
+                    CallModule(call)
+                )
+            )
         }
     }
 
@@ -117,6 +125,8 @@ constructor(application: Application) {
 
             authenticate("basic") {
                 get("/protected/route/basic") {
+
+
                     call.principal<UserIdPrincipal>()?.let { call.respondText("Hello ${it.name}") }
                 }
             }
